@@ -1,38 +1,80 @@
 import React, { Fragment } from "react";
 import SliderComponent from "./common/SliderComponent";
 
-const SliderSelect = () => {
+const SliderSelect = ({ data, setData }) => {
+  console.log(data);
+
+  const bank_limit = 10000;
+
   return (
     <Fragment>
       <SliderComponent
         label="Property Value"
         min={1000}
-        max={10000}
-        defaultValue={20}
+        max={bank_limit}
+        defaultValue={data.propertyValue}
+        value={data.propertyValue}
         step={100}
-        onChange={(e, value) => console.log(value)}
+        onChange={(e, value) =>
+          setData({
+            ...data,
+            downPayment: value * 0.1,
+            loanAmount: value * 0.9,
+            propertyValue: value,
+          })
+        }
         unit="€"
-        amount={3000}
+        amount={data.propertyValue}
       />
       <SliderComponent
         label="Down Payment"
         min={0}
-        max={50}
-        defaultValue={20}
-        step={5}
-        onChange={(e, value) => console.log(value)}
+        max={data.propertyValue}
+        defaultValue={data.downPayment}
+        value={data.downPayment}
+        step={100}
+        onChange={(e, value) =>
+          setData({
+            ...data,
+            loanAmount: data.propertyValue - value,
+            downPayment: value,
+          })
+        }
         unit="€"
-        amount={500}
+        amount={data.downPayment}
       />
       <SliderComponent
         label="Loan Amount"
         min={0}
-        max={50}
-        defaultValue={20}
+        max={data.propertyValue}
+        defaultValue={data.loanAmount}
+        value={data.loanAmount}
         step={5}
-        onChange={(e, value) => console.log(value)}
+        onChange={(e, value) =>
+          setData({
+            ...data,
+            downPayment: data.propertyValue - value,
+            loanAmount: value,
+          })
+        }
         unit="€"
-        amount={700}
+        amount={data.loanAmount}
+      />
+      <SliderComponent
+        label="Interest Rate"
+        min={2}
+        max={18}
+        defaultValue={data.interestRate}
+        value={data.interestRate}
+        step={0.25}
+        onChange={(e, value) =>
+          setData({
+            ...data,
+            interestRate: value,
+          })
+        }
+        unit="%"
+        amount={data.interestRate}
       />
     </Fragment>
   );
