@@ -4,7 +4,7 @@ import SliderComponent from "./common/SliderComponent";
 const SliderSelect = ({ data, setData }) => {
   console.log(data);
 
-  const bank_limit = 10000;
+  const bank_limit = 300000;
 
   return (
     <Fragment>
@@ -14,7 +14,7 @@ const SliderSelect = ({ data, setData }) => {
         max={bank_limit}
         defaultValue={data.propertyValue}
         value={data.propertyValue}
-        step={100}
+        step={500}
         onChange={(e, value) =>
           setData({
             ...data,
@@ -32,7 +32,7 @@ const SliderSelect = ({ data, setData }) => {
         max={data.propertyValue}
         defaultValue={data.downPayment}
         value={data.downPayment}
-        step={100}
+        step={500}
         onChange={(e, value) =>
           setData({
             ...data,
@@ -49,7 +49,7 @@ const SliderSelect = ({ data, setData }) => {
         max={data.propertyValue}
         defaultValue={data.loanAmount}
         value={data.loanAmount}
-        step={5}
+        step={100}
         onChange={(e, value) =>
           setData({
             ...data,

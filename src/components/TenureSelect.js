@@ -17,6 +17,7 @@ const TenureSelect = ({ data, setData }) => {
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
+        defaultValue={20}
         value={data.loanTerm}
         label="Tenure"
         onChange={handleChange}
