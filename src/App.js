@@ -9,8 +9,8 @@ function App() {
   const [data, setData] = useState({
     propertyValue: 3000,
     downPayment: 3000 * 0.1,
-    loanAmount: 3000,
-    loanTermm: 3000,
+    loanAmount: 3000 * 0.9,
+    loanTerm: 5,
     interestRate: 4,
   });
 
@@ -21,7 +21,7 @@ function App() {
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <SliderSelect data={data} setData={setData} />
-            <TenureSelect />
+            <TenureSelect data={data} setData={setData} />
           </Grid>
           <Grid item xs={12} md={6}>
             <Result />
